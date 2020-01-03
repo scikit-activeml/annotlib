@@ -88,7 +88,7 @@ class ClassifierBasedAnnot(StandardAnnot):
     >>> # load iris data set
     >>> X, y_true = load_iris(return_X_y=True)
     >>> # create list of SVM and Gaussian Process classifier
-    >>> classifiers = [SVC(C=1, probability=True), SVC(C=3, probability=True), GaussianProcessClassifier()]
+    >>> classifiers = [SVC(C=1, probability=True, gamma='auto'), SVC(C=3, probability=True), GaussianProcessClassifier()]
     >>> # simulate annotators on the iris data set
     >>> annotators = ClassifierBasedAnnot(X=X, y_true=y_true, classifiers=classifiers, n_annotators=3)
     >>> # the number of annotators must be equal to the number of classifiers
@@ -130,7 +130,8 @@ class ClassifierBasedAnnot(StandardAnnot):
 
         # check classifier models
         if not isinstance(classifiers, list):
-            clf = SVC(random_state=self.random_state_, probability=True) if classifiers is None else classifiers
+            clf = SVC(random_state=self.random_state_, probability=True,
+                      gamma='auto') if classifiers is None else classifiers
             classifiers = [copy.deepcopy(clf) for _ in range(self.n_annotators())]
         for clf in classifiers:
             if len(classifiers) != self.n_annotators() or not is_classifier(clf) or getattr(clf, 'predict_proba',

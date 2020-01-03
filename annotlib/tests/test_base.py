@@ -36,8 +36,8 @@ class TestBaseAnnot(unittest.TestCase):
 
         # test correct annotator ids
         fig, ax = self.annot.plot_labelling_accuracy(X=self.X, y_true=self.y_true, figsize=(5, 5))
-        self.assertEquals(5, fig.get_figheight())
-        self.assertEquals(5, fig.get_figwidth())
+        self.assertEqual(5, fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
         np.testing.assert_array_equal([0, 1, 2], ax.get_xticks())
 
     def test_plot_labelling_confusion_matrices(self):
@@ -48,8 +48,8 @@ class TestBaseAnnot(unittest.TestCase):
         # test correct annotator ids
         fig, ax = self.annot.plot_labelling_confusion_matrices(X=self.X, y_true=self.y_true,
                                                                y_unique=np.unique(self.y_true), figsize=(5,5))
-        self.assertEquals(5, fig.get_figwidth())
-        self.assertEquals(5*self.annot.n_annotators(), fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
+        self.assertEqual(5*self.annot.n_annotators(), fig.get_figheight())
         self.assertEqual(self.annot.n_annotators(), len(ax))
 
     def test_plot_class_labels(self):
@@ -62,26 +62,26 @@ class TestBaseAnnot(unittest.TestCase):
         # test different options of correct usage
         fig, ax = self.annot.plot_class_labels(X=self.X, y_true=self.y_true, plot_confidences=True,
                                                figsize=(5, 5))
-        self.assertEquals(5, fig.get_figwidth())
-        self.assertEquals(self.annot.n_annotators() * 5, fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
+        self.assertEqual(self.annot.n_annotators() * 5, fig.get_figheight())
         self.assertEqual(self.annot.n_annotators(), len(ax))
 
         fig, ax = self.annot.plot_class_labels(X=self.X, y_true=None, plot_confidences=True,
                                                figsize=(5, 5))
-        self.assertEquals(5, fig.get_figwidth())
-        self.assertEquals(self.annot.n_annotators() * 5, fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
+        self.assertEqual(self.annot.n_annotators() * 5, fig.get_figheight())
         self.assertEqual(self.annot.n_annotators(), len(ax))
 
         fig, ax = self.annot.plot_class_labels(X=self.X, y_true=self.y_true, plot_confidences=False,
                                                figsize=(5, 5))
-        self.assertEquals(5, fig.get_figwidth())
-        self.assertEquals(self.annot.n_annotators() * 5, fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
+        self.assertEqual(self.annot.n_annotators() * 5, fig.get_figheight())
         self.assertEqual(self.annot.n_annotators(), len(ax))
 
         fig, ax = self.annot.plot_class_labels(X=self.X, y_true=self.y_true, plot_confidences=True, features_ids=[0],
                                                figsize=(5, 5))
-        self.assertEquals(5, fig.get_figwidth())
-        self.assertEquals(self.annot.n_annotators() * 5, fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
+        self.assertEqual(self.annot.n_annotators() * 5, fig.get_figheight())
         self.assertEqual(self.annot.n_annotators(), len(ax))
 
 

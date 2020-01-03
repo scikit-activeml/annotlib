@@ -163,7 +163,7 @@ class ClusterBasedAnnot(StandardAnnot):
                 acc = self.random_state_.uniform(acc_low, acc_up)
                 p = column_or_1d(np.array([(1 - acc) / (n_classes - 1)] * n_classes))
                 p[y_true_transformed[x_idx]] = acc
-                self.Y_[x_idx, a_idx] = le_cla.inverse_transform(self.random_state_.choice(range(n_classes), p=p))
+                self.Y_[x_idx, a_idx] = le_cla.inverse_transform([self.random_state_.choice(range(n_classes), p=p)])
                 self.C_[x_idx, a_idx] = acc
 
         self._add_confidence_noise(probabilistic=True)

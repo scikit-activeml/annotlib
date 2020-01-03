@@ -97,7 +97,7 @@ class DifficultyBasedAnnot(StandardAnnot):
     >>> # load iris data set
     >>> X, y_true = load_iris(return_X_y=True)
     >>> # create list of SVM and Gaussian Process classifier
-    >>> classifiers = [SVC(C=1, probability=True), SVC(C=3, probability=True), GaussianProcessClassifier()]
+    >>> classifiers = [SVC(C=1, probability=True, gamma='auto'), SVC(C=3, probability=True), GaussianProcessClassifier()]
     >>> # set labelling performances of annotators
     >>> alphas = [-3, 0, 3]
     >>> # simulate annotators on the iris data set
@@ -135,8 +135,8 @@ class DifficultyBasedAnnot(StandardAnnot):
         # check alpha scores
         self.alphas_ = np.linspace(0, 2, self.n_annotators()) if alphas is None else column_or_1d(alphas)
         if len(self.alphas_) != self.n_annotators():
-                raise ValueError('The parameter `alphas` must contain a single labelling performance value for each'
-                                 'annotator.')
+            raise ValueError('The parameter `alphas` must contain a single labelling performance value for each'
+                             'annotator.')
 
         # create class labels and confidence scores container
         self.Y_ = np.empty((n_samples, self.n_annotators()))
@@ -149,7 +149,8 @@ class DifficultyBasedAnnot(StandardAnnot):
 
         # check classifier models
         if not isinstance(classifiers, list):
-            clf = SVC(random_state=self.random_state_, probability=True) if classifiers is None else classifiers
+            clf = SVC(random_state=self.random_state_, probability=True,
+                      gamma='auto') if classifiers is None else classifiers
             classifiers = [clf]
         for clf in classifiers:
             if not is_classifier(clf) or getattr(clf, 'predict_proba', None) is None:
@@ -184,7 +185,7 @@ class DifficultyBasedAnnot(StandardAnnot):
                 acc = self.C_[x, a]
                 p = [(1 - acc) / (n_classes - 1)] * n_classes
                 p[y_transformed[x]] = acc
-                self.Y_[x, a] = le.inverse_transform(self.random_state_.choice(range(n_classes), p=p))
+                self.Y_[x, a] = le.inverse_transform([self.random_state_.choice(range(n_classes), p=p)])
 
         # add confidence noise
         self._add_confidence_noise(probabilistic=True)

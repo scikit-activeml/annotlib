@@ -29,7 +29,7 @@ class TestDifficultyBasedAnnot(unittest.TestCase):
         self.assertTrue((annotator.C_ >= 0).all() and (annotator.C_ <= 1).all)
 
         # estimating simplicity scores by means of multiple classifiers
-        annotator = DifficultyBasedAnnot(X=X, y_true=y, classifiers=[SVC(probability=True),
+        annotator = DifficultyBasedAnnot(X=X, y_true=y, classifiers=[SVC(probability=True, gamma='auto'),
                                                                      GaussianProcessClassifier()])
         labelling_acc = annotator.labelling_performance(X=X, y_true=y)
         self.assertEqual(5, len(annotator.alphas_))
@@ -43,8 +43,8 @@ class TestDifficultyBasedAnnot(unittest.TestCase):
         X, y = load_iris(return_X_y=True)
         annotator = DifficultyBasedAnnot(X=X, y_true=y)
         fig, ax = annotator.plot_annotators_labelling_probabilities()
-        self.assertEquals(3, fig.get_figheight())
-        self.assertEquals(5, fig.get_figwidth())
+        self.assertEqual(3, fig.get_figheight())
+        self.assertEqual(5, fig.get_figwidth())
 
 
 if __name__ == '__main__':

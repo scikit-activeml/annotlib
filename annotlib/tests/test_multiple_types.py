@@ -13,8 +13,7 @@ class TestMultipleAnnotTypes(unittest.TestCase):
     def setUp(self):
         self.X, self.y = load_iris(return_X_y=True)
         self.annotator_types = [ClusterBasedAnnot(X=self.X, y_true=self.y, random_state=42, n_annotators=3),
-                                DifficultyBasedAnnot(X=self.X, y_true=self.y, random_state=42,
-                                                     n_annotators=2)]
+                                DifficultyBasedAnnot(X=self.X, y_true=self.y, random_state=42, n_annotators=2)]
         self.y_unique = np.unique(self.y)
 
     def test_init(self):
@@ -91,4 +90,4 @@ class TestMultipleAnnotTypes(unittest.TestCase):
 
 
 if __name__ == '__main__':
-        unittest.main()
+    unittest.main()

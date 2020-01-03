@@ -22,7 +22,7 @@ class TestClassifierBasedAnnot(unittest.TestCase):
                           train_ratios=[[.4, .6], [.8, .4]])
         self.assertRaises(TypeError, ClassifierBasedAnnot, X, y, n_annotators=1, features=[[0, -1, -1, -1]])
         self.assertRaises(TypeError, ClassifierBasedAnnot, X, y,
-                          classifiers=[SVC(probability=True), SVC(probability=True)])
+                          classifiers=[SVC(probability=True, gamma='auto'), SVC(probability=True, gamma='auto')])
 
         # default train ratio parameters
         annotator = ClassifierBasedAnnot(X=X, y_true=y, n_annotators=2, train_ratios='one-hot')
