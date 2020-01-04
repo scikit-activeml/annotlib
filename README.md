@@ -2,6 +2,8 @@
 
 authors: Marek Herde and Adrian Calma
 
+![](https://github.com/acalma/annotlib/workflows/annotlib/badge.svg)
+
 # Introduction
 
 *annotlib* is a Python package for simulating annotators in an active learning setting.
