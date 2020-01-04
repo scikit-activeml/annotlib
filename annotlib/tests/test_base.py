@@ -4,7 +4,10 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.metrics import confusion_matrix
 
+from unittest.mock import patch
+
 from annotlib.standard import StandardAnnot
+from annotlib.base import BaseAnnot
 
 
 class TestBaseAnnot(unittest.TestCase):
@@ -14,6 +17,15 @@ class TestBaseAnnot(unittest.TestCase):
         self.C = np.random.uniform(0, 1, len(self.X)*3).reshape((len(self.X), 3))
         self.y_missing = np.full(len(self.X), np.nan)
         self.annot = StandardAnnot(X=self.X, Y=np.array([self.y_true, self.y_true, self.y_missing]).T, C=self.C)
+
+    @patch.multiple(BaseAnnot, __abstractmethods__=set())
+    def test_interface(self):
+        base_annot = BaseAnnot()
+        base_annot.n_annotators()
+        base_annot.n_queries()
+        base_annot.queried_samples()
+        base_annot.class_labels(X=None, annotator_ids=None, query_value=None)
+        base_annot.confidence_scores(X=None, annotator_ids=None)
 
     def test_labelling_performance(self):
         # test accuracy as default measure of labelling performance
@@ -87,5 +99,3 @@ class TestBaseAnnot(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
