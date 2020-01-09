@@ -9,6 +9,5 @@ sphinx>=1.4
 ipykernel
 nbsphinx
 sphinxcontrib-bibtex
-mkl-random
 numpydoc
 sphinx_rtd_theme
