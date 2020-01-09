@@ -19,8 +19,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'annotlib: Annotator Library'
-copyright = '2018, Marek Herde'
-author = 'Marek Herde'
+copyright = '2020, Marek Herde'
+author = 'Marek Herde and Adrian Calma'
 
 # The short X.Y version
 version = '1.0'
