@@ -13,6 +13,10 @@ Marek Herde: marek.herde@uni-kassel.de
 
 Adrian Calma: adrian.calma@uni-kassel.de
 
+Our library is not a full active learning framework but focuses on the modelling of annotators in a
+Python environment.
+However, our library may be combined with the Python active learning framework *libact* :cite:`mherde:YY2017`.
+
 Introduction -- Why annotlib?
 -----------------------------
 The Python package *annotlib* is a library modelling human annotators in an active learning setting.
@@ -34,28 +38,28 @@ To evaluate an active learning strategy in the setting of uncertain annotators, 
 annotators are required to be available, but there is a lack of data sets offering this option.
 As a result, recently published active learning strategies are evaluated on simulated annotators.
 The used simulation techniques are diverse :cite:`mherde:Calma2017`.
-Our developed *annotlib* represents a Python library of these techniques and implements additional methods,
+*annotlib* represents a Python library of these techniques and implements additional methods,
 which simulate realistic characteristics of uncertain annotators.
-This way, we establish a library simplifying and standardising the evaluation of active learning strategies coping
+
+This library simplifies and standardises the evaluation of active learning strategies coping
 with uncertain annotators.
 
 Pool-based Active Learning Cycle with Multiple Annotators
 ---------------------------------------------------------
-Pool-based active learning with multiple annotators is a cyclic process and illustrated by :numref:`al-cycle`.
-The data of the classification problem is divided into two pools.
-The unlabelled pool consists of samples being not labelled yet, whereas the labelled pool comprises samples for which at
+Pool-based active learning with multiple annotators is a cyclic process, as illustrated in :numref:`al-cycle`.
+The existing data is divided into two pools: the unlabelled and the labelled pool.
+The unlabelled pool consists of samples that have not bee labelled yet, whereas the labelled pool comprises samples for which at
 least one annotator provided a class label.
 The classifier is trained on the samples of the labelled pool.
 In the initial phase of active learning, there are very few or even zero labelled samples,
 so that the vast majority of samples are unlabelled.
-By repeating the active-learning cycle, the number of labelled samples respectively the size of the classifier's
-training set increases.
+In each active-learning cycle, the number of labelled samples, respectively, the size of the classifier's
+training set, increases.
 
 The active learning cycle is a sequential process.
-At the start of each cycle, a sample to be labelled must be selected.
-This sample can be either selected from the unlabelled pool or from the labelled pool.
-In the latter case, the sample is relabelled.
-As a result, samples can have multiple labels.
+At the start of each cycle, a sample is selected for labelling.
+This sample can be selected either from the unlabelled pool or from the labelled pool.
+In the latter case, the sample is relabelled which results in samples can have multiple labels.
 Next to the selection of the sample, corresponding annotator(s) must be also determined.
 Each selected annotator provides a class label for the sample to be labelled.
 The selection of a sample and annotator(s) is executed by a so-called selection strategy.
@@ -63,11 +67,7 @@ Such a selection strategy aims at choosing samples and annotators, so that the c
 improves.
 After the selected sample has been labelled by the selected annotator(s), it is inserted into the labelled pool.
 On this updated labelled pool, the classifier is retrained.
-The last step of each cycle is the test on a stopping criterion, which defines the end of the active learning procedure.
-
-Our library is not a full active learning framework but focuses on the modelling of annotators in a
-Python environment.
-However, our library may be combined with the Python active learning framework *libact* :cite:`mherde:YY2017`.
+The last step of each cycle is the test of a stopping criterion, which defines the end of the active learning procedure.
 
 .. _al-cycle:
 
