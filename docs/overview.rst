@@ -15,7 +15,7 @@ Adrian Calma: adrian.calma@uni-kassel.de
 
 Our library is not a full active learning framework but focuses on the modelling of annotators in a
 Python environment.
-However, our library may be combined with the Python active learning framework *libact* :cite:`mherde:YY2017`.
+However, our library may be combined with the Python active learning framework *libact* https://libact.readthedocs.io/en/latest/overview.html :cite:`mherde:YY2017`.
 
 Introduction -- Why annotlib?
 -----------------------------
