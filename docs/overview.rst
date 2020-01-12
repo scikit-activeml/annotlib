@@ -1,22 +1,36 @@
 Overview
 ========
 
-Introduction
-------------
+Humans are not perfect, they are uncertain and prone to error.
+So are the annotators in a real world active learning setting.
+
+*annotlib* is here to help you test the performance of your active learning strategies with uncertain annotators.
+
+
+💌 we would love to hear from you (feedback, request to develop, or feature requests):
+
+Marek Herde: marek.herde@uni-kassel.de
+
+Adrian Calma: adrian.calma@uni-kassel.de
+
+Introduction -- Why annotlib?
+-----------------------------
 The Python package *annotlib* is a library modelling human annotators in an active learning setting.
-Solving classification problems by using supervised machine learning models requires samples assigned to class labels.
-However, labelling these samples causes cost (e.g. workload, time, etc.), so that active learning strategies aim at
+Solving classification problems by using supervised machine learning models requires labels.
+That is, we need pairs of samples and the correspoding labels (i.e. the class to which they belong).
+However, labelling these samples generates cost (e.g. workload, time, etc.), which we would like to reduce.
+Thus, active learning strategies aim at
 reducing these cost by selecting samples, which are the most useful for training a classifier :cite:`mherde:Settles2009`.
 
-In real-world scenarios, human annotators are often responsible for providing the class labels.
+In real-world scenarios, human annotators are often responsible for providing the labels.
 Unfortunately, there is no guaranty for the omniscience of those annotators.
-Hence, annotators are prone to error respectively uncertain, so that the class labels assigned to samples may be
+Hence, annotators are prone to error, respectively uncertain, so that the labels assigned to samples may be
 false :cite:`mherde:Calma2016`.
 The labelling performance of an annotator is affected by many factors, e.g. expertise, experience, concentration,
 level of fatigue and so on :cite:`mherde:Calma2017`.
 Moreover, the difficulty of a sample affects the correctness of a labelling process :cite:`mherde:Whitehill2009`.
 
-To evaluate an active learning strategy in the setting of uncertain annotators, class labels of these uncertain
+To evaluate an active learning strategy in the setting of uncertain annotators, labels of these uncertain
 annotators are required to be available, but there is a lack of data sets offering this option.
 As a result, recently published active learning strategies are evaluated on simulated annotators.
 The used simulation techniques are diverse :cite:`mherde:Calma2017`.
@@ -41,7 +55,7 @@ The active learning cycle is a sequential process.
 At the start of each cycle, a sample to be labelled must be selected.
 This sample can be either selected from the unlabelled pool or from the labelled pool.
 In the latter case, the sample is relabelled.
-As a result, samples can have multiple class labels.
+As a result, samples can have multiple labels.
 Next to the selection of the sample, corresponding annotator(s) must be also determined.
 Each selected annotator provides a class label for the sample to be labelled.
 The selection of a sample and annotator(s) is executed by a so-called selection strategy.
@@ -63,8 +77,8 @@ However, our library may be combined with the Python active learning framework *
    :align: center
 
    Pool-based active learning cycle with multiple annotators: The active learning cycle is illustrated for a binary
-   classification problem, where :math:`+` and :math:`-` represent the two class labels.
-   Unlabelled samples are empty circles, whereas labelled samples are circles containing class labels.
+   classification problem, where :math:`+` and :math:`-` represent the two labels.
+   Unlabelled samples are empty circles, whereas labelled samples are circles containing labels.
 
 Modelling Annotators in Python
 ------------------------------
@@ -85,7 +99,7 @@ The corresponding confidence scores are given by the array ``C`` having the same
 To represent a missing label, we use the ``nan`` implementation of *NumPy*.
 There are additional functions implemented to improve the analysis of annotators in machine learning applications.
 Our modelled annotators log their number of processed queries and the samples for which they were queried to
-provide class labels.
+provide labels.
 Moreover, the labelling performance of annotators can be evaluated for arbitrary performance functions.
 
 Annotator Types and Simulation
@@ -111,13 +125,13 @@ We discarded information regarding attributes and methods for the purpose of rea
 The annotator model of the described active learning cycle is implemented by the base class
 :doc:`BaseAnnot <annotlib.base>`.
 It is an abstract class and defines the functions of our assumed annotator model as abstract Python methods.
-For example, there are methods ensuring the implementation of providing class labels and confidence scores
+For example, there are methods ensuring the implementation of providing labels and confidence scores
 for given input samples.
 All other annotator types are subclasses of the :doc:`BaseAnnot <annotlib.base>` class.
 The second level of the diagram in :numref:`structure` comprises the classes :doc:`StandardAnnot <annotlib.standard>`,
 :doc:`MultiAnnotTypes <annotlib.multi_types>`, and :doc:`DynamicAnnot <annotlib.dynamic>` .
 The :doc:`StandardAnnot <annotlib.standard>` class describes annotators as data structure storing the mapping between
-samples and class labels respectively confidence scores.
+samples and labels respectively confidence scores.
 An instance of the :doc:`StandardAnnot <annotlib.standard>` class is fully specified by providing such a mapping.
 The subclasses of the standard annotator type are simulations, which generate the mapping according to
 input parameters specified by the user.
