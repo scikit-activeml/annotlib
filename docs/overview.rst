@@ -80,7 +80,7 @@ The last step of each cycle is the test of a stopping criterion, which defines t
    classification problem, where :math:`+` and :math:`-` represent the two labels.
    Unlabelled samples are empty circles, whereas labelled samples are circles containing labels.
 
-Modelling Annotators in Python -- scikit-learn compatible
+Modelling Annotators -- scikit-learn compatible
 ---------------------------------------------------------
 In our package *annotlib*, annotators are implemented by Python classes, where each instance of such a
 Python class is an implementation of annotators :math:`\{a_0, \dots, a_\texttt{n\_annotators}\}` for a given
