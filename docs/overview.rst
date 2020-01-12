@@ -71,7 +71,7 @@ The last step of each cycle is the test of a stopping criterion, which defines t
 
 .. _al-cycle:
 
-.. figure:: al_cycle_pp.pdf
+.. figure:: al_cycle_pp.png
    :width: 510
    :height: 302
    :align: center
@@ -114,7 +114,7 @@ We discarded information regarding attributes and methods for the purpose of rea
 
 .. _structure:
 
-.. figure:: structure_pp.pdf
+.. figure:: structure_pp.png
    :width: 513
    :height: 148
    :align: center
