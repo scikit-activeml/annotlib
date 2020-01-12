@@ -80,12 +80,12 @@ The last step of each cycle is the test of a stopping criterion, which defines t
    classification problem, where :math:`+` and :math:`-` represent the two labels.
    Unlabelled samples are empty circles, whereas labelled samples are circles containing labels.
 
-Modelling Annotators in Python
-------------------------------
+Modelling Annotators in Python -- scikit-learn compatible
+---------------------------------------------------------
 In our package *annotlib*, annotators are implemented by Python classes, where each instance of such a
 Python class is an implementation of annotators :math:`\{a_0, \dots, a_\texttt{n\_annotators}\}` for a given
 classification problem.
-Such an instance of an annotator Python class must provide several functions to integrate it in Python implementations
+Such an instance of an annotator class must provide several functions to integrate it in Python implementations
 of machine learning applications.
 A very popular Python framework for machine learning is named *scikit-learn* :cite:`mherde:Buitinck2013`.
 As a result, *annotlib* relies on the identical data representation as *scikit-learn*.
@@ -106,7 +106,7 @@ Annotator Types and Simulation
 ------------------------------
 A main contribution of *annotlib* is the simulation of annotators.
 Since the number of publicly available data sets with labels of multiple annotators is restricted,
-our Python package offers techniques of simulating several annotator types implemented as different Python classes.
+our package offers techniques for simulating several annotator types.
 Another advantage of such artificial annotators is the knowledge of the underlying simulation procedure, so that
 selection strategies can be tested on their robustness regarding the handling of different annotator types.
 The relations between the classes of annotator types is given by the diagram in :numref:`structure`.
@@ -124,7 +124,7 @@ We discarded information regarding attributes and methods for the purpose of rea
 
 The annotator model of the described active learning cycle is implemented by the base class
 :doc:`BaseAnnot <annotlib.base>`.
-It is an abstract class and defines the functions of our assumed annotator model as abstract Python methods.
+It is an abstract class and defines the functions of our assumed annotator model as abstract methods.
 For example, there are methods ensuring the implementation of providing labels and confidence scores
 for given input samples.
 All other annotator types are subclasses of the :doc:`BaseAnnot <annotlib.base>` class.
@@ -133,16 +133,17 @@ The second level of the diagram in :numref:`structure` comprises the classes :do
 The :doc:`StandardAnnot <annotlib.standard>` class describes annotators as data structure storing the mapping between
 samples and labels respectively confidence scores.
 An instance of the :doc:`StandardAnnot <annotlib.standard>` class is fully specified by providing such a mapping.
-The subclasses of the standard annotator type are simulations, which generate the mapping according to
-input parameters specified by the user.
+The subclasses of the standard annotator type are simulations, which generate the mapping according to the specified
+input parameters.
 The :doc:`DynamicAnnot <annotlib.dynamic>`  class is an interface to emulate annotators with dynamic
 labelling accuracies.
-To combine all the different annotator types, the user may use the :doc:`MultiAnnotTypes <annotlib.multi_types>` class.
+To combine all the different annotator types, please refer to :doc:`MultiAnnotTypes <annotlib.multi_types>` class.
 An instance of this class is comparable to a container to which different instances of other annotator classes
 can be added.
 
-To get an overview of these types of annotators, there are so-called *Jupyter Notebooks* :cite:`mherde:Perez2007`
-illustrating the use and the characteristics of the annotator classes.
+The *Jupyter Notebooks* :cite:`mherde:Perez2007`
+illustrate the use and the characteristics of the annotator classes,
+
 The following table gives an overview of these *Jupyter Notebook*, the application programming interface (API), and
 references used in the notebooks.
 
