@@ -11,7 +11,7 @@ So are the annotators in a real world active learning setting.
 
 Marek Herde: marek.herde@uni-kassel.de
 
-Adrian Calma: adrian.calma@uni-kassel.de
+Adrian Calma: adrian.calma@uni-kassel.de [linkedin](https://www.linkedin.com/in/adrian-calma/)
 
 Our library is not a full active learning framework but focuses on the modelling of annotators in a
 Python environment.
