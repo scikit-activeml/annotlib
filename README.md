@@ -22,4 +22,4 @@ As a result, recently published active learning strategies are evaluated on simu
 Our developed *annotlib* Python package represents a of these techniques and implements additional methods, which simulate realistic characteristics of uncertain annotators.
 This way, we establish a library simplifying and standardising the evaluation of active learning strategies coping with uncertain annotators.
 
-For more information go to the [documentation](./docs/_build/html/index.html).
+For more information go to the [documentation](https://annotlib.readthedocs.io).
