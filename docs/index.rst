@@ -9,6 +9,7 @@ Welcome to *annotlib* -- An Annotator Library
 .. toctree::
    :maxdepth: 2
 
+   jupyter_notebooks/quick_start
    overview
    jupyter_notebooks/base_standard_annotators_nb
    jupyter_notebooks/cluster_simulated_annotators_nb
